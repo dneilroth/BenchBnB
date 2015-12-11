@@ -1,6 +1,6 @@
 class Api::BenchesController < ApplicationController
   def index
-    render :index
+    Bench.all
   end
 
   def create
