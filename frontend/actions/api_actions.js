@@ -1,4 +1,4 @@
-var AppDispatcher = require('../dispatcher.dispatcher');
+var AppDispatcher = require('../dispatcher/dispatcher');
 var BenchConstants = require('../constants/bench_constants');
 
 ApiActions = {
