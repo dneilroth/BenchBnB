@@ -1,6 +1,5 @@
 var React = require('react');
 var BenchStore = require('../stores/bench');
-var ApiUtil = require('../util/api_util');
 
 var Index = React.createClass({
   getInitialState: function() {
@@ -8,7 +7,6 @@ var Index = React.createClass({
   },
 
   componentDidMount: function() {
-    ApiUtil.fetchBenches();
     BenchStore.addListener(this.updateBenches);
   },
 
@@ -18,7 +16,6 @@ var Index = React.createClass({
 
   render: function(){
     var benches = this.state.benches.map(function(bench, idx){
-      console.log(bench.bench);
       return <li key={idx}>{bench.description}</li>;
     });
     return(
