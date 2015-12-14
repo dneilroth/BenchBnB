@@ -8,9 +8,17 @@ var BenchStore = new Store(AppDispatcher);
 BenchStore.__onDispatch = function(payload) {
   switch (payload.actionType) {
     case "BENCHES_RECEIVED":
-      var result = BenchStore.resetBenches(payload.benches)
+      BenchStore.resetBenches(payload.benches);
+      break;
+    case "BENCH_ADDED":
+      BenchStore.addBench(payload.bench);
       break;
   }
+};
+
+BenchStore.addBench = function(bench) {
+  _benches.push(bench);
+  this.__emitChange();
 };
 
 BenchStore.resetBenches = function(benches) {
