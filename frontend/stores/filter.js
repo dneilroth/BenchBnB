@@ -1,7 +1,7 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 
-var _filters = {};
+var _filters = {bounds: "", minSeat: 0, maxSeat: 100};
 var FilterStore = new Store(AppDispatcher);
 
 FilterStore.__onDispatch = function(payload) {
@@ -32,13 +32,14 @@ FilterStore.setBounds = function(bounds) {
   this.__emitChange();
 };
 
-FilterStore.setMinSeat = function(minSeat) {
-  _filters[minSeat] = minSeat;
+FilterStore.setMinSeat = function(min) {
+  _filters['minSeat'] = min;
+  console.log(_filters);
   this.__emitChange();
 };
 
-FilterStore.setMaxSeat = function(maxSeat) {
-  _filters[maxSeat] = maxSeat;
+FilterStore.setMaxSeat = function(max) {
+  _filters['maxSeat'] = max;
   this.__emitChange();
 };
 

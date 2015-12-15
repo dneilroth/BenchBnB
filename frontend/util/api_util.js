@@ -24,6 +24,7 @@ var ApiUtil = {
     },
 
     fetchFilteredBenches: function(filters) {
+      console.log(filters);
       $.ajax({
         url: 'api/benches',
         data: {filters: filters},

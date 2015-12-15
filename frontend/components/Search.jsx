@@ -10,7 +10,9 @@ var FilterActions = require('../actions/filter_actions');
 var Search = React.createClass({
 
   getInitialState: function() {
-    return ({minSeat: 0, maxSeat: 100, bounds: ""});
+    return ({minSeat: FilterStore.all()['minSeat'],
+            maxSeat: 100,
+            bounds: ""});
   },
 
   componentDidMount: function() {
@@ -18,12 +20,13 @@ var Search = React.createClass({
   },
 
   setMinSeat: function(min) {
-    this.setState({minSeat: min});
+    console.log(min);
+    this.setState({minSeat: FilterStore.all()['minSeat']});
     FilterActions.receiveMinSeat(min);
   },
 
   setMaxSeat: function(max) {
-    this.setState({maxSeat: max});
+    this.setState({maxSeat: FilterStore.all()['maxSeat']});
     FilterActions.receiveMaxSeat(max);
   },
 

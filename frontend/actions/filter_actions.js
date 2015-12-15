@@ -10,6 +10,7 @@ var filterActions = {
   },
 
   receiveMinSeat: function(minSeat) {
+    console.log(minSeat);
     AppDispatcher.dispatch({
       actionType: "MIN_SEAT_RECEIVED",
       minSeat: minSeat
