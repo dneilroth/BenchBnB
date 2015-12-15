@@ -1,10 +1,15 @@
 var React = require('react');
 var ApiUtil = require('../util/api_util');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 
 var BenchForm = React.createClass({
+  mixins: [LinkedStateMixin],
+
   getInitialState: function() {
-    return {latitude: "", longitude: "", seating: "", description: ""};
+    var lat = this.props.location.query.lat;
+    var lng = this.props.location.query.lng;
+    return {lat: lat, lng: lng, seating: "", description: ""};
   },
 
   handleSubmit: function(e){
@@ -19,23 +24,19 @@ var BenchForm = React.createClass({
 
         <label>latitude: </label>
         <input type="integer"
-          value={this.state.latitude}
-          onChange={this.handleLatitudeChange}/>
+          valueLink={this.linkState('lat')}/>
 
         <label>longitude: </label>
         <input type="integer"
-          value={this.state.longitude}
-          onChange={this.handleLongitudeChange}/>
+          valueLink={this.linkState('lng')}/>
 
         <label>seating: </label>
         <input type="integer"
-          value={this.state.seating}
-          onChange={this.handleSeatingChange} />
+          valueLink={this.linkState('seating')} />
 
         <label>description: </label>
         <input type="text"
-        value={this.state.description}
-        onChange={this.handleDescriptionChange}/>
+        valueLink={this.linkState('description')}/>
 
         <input type="submit" value="add new bench!" />
       </form>

@@ -1,23 +1,34 @@
 var ApiActions = require('../actions/api_actions');
-var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var FilterStore = require('../stores/filter');
 
 var ApiUtil = {
-  fetchBenches: function(bounds) {
-    $.ajax({
+  fetchBenches: function(filters) {
+      $.ajax({
           url: 'api/benches',
-          data: {bounds: bounds},
+          data: {filters: filters},
           success: function(benches){
             ApiActions.receiveAll(benches);
           }
         });
       },
 
-    creatBench: function(newBench) {
+    createBench: function(newBench) {
       $.ajax({
         method: "POST",
+        url: 'api/benches',
         data: {bench: newBench},
         success: function(bench) {
           ApiActions.addBench(bench);
+        }
+      });
+    },
+
+    fetchFilteredBenches: function(filters) {
+      $.ajax({
+        url: 'api/benches',
+        data: {filters: filters},
+        success: function(benches) {
+          ApiActions.receiveAll(benches);
         }
       });
     }

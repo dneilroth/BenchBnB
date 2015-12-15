@@ -1,9 +1,8 @@
 class Bench < ActiveRecord::Base
-  validates :description, :lng, :lat, presence: true
+  validates :description, :lng, :lat, :seating, presence: true
 
-  def self.in_bounds(bounds)
-    self.where(lat: bounds['southWest']['lat'] .. bounds['northEast']['lat'],
-    lng: bounds['southWest']['lng'] .. bounds['northEast']['lng']
-    )
+  def self.filter(filters)
+    self.where(lat: filters['bounds']['southWest']['lat'] .. filters['bounds']['northEast']['lat'],
+    lng: filters['bounds']['southWest']['lng'] .. filters['bounds']['northEast']['lng'], seating: filters['minSeat'] .. filters['maxSeat'])
   end
 end
